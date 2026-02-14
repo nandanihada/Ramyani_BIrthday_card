@@ -1,0 +1,18 @@
+{
+  "name": "birthday-wish-website",
+  "version": "1.0.0",
+  "description": "An interactive birthday wish website with animations",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "dev": "serve ."
+  },
+  "keywords": [
+    "birthday",
+    "animation",
+    "interactive",
+    "celebration"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

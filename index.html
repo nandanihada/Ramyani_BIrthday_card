@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <meta name="description" content="A special birthday wish filled with love and memories">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Intro Screen - Character Animation -->
+    <div id="intro-screen" class="screen active">
+        <div class="intro-stars"></div>
+        <div class="character-container">
+            <div class="character">
+                <div class="character-body">
+                    <div class="character-head">
+                        <div class="character-face">
+                            <div class="eye eye-left"></div>
+                            <div class="eye eye-right"></div>
+                            <div class="smile"></div>
+                        </div>
+                    </div>
+                    <div class="character-torso"></div>
+                    <div class="character-arm character-arm-left"></div>
+                    <div class="character-arm character-arm-right"></div>
+                </div>
+            </div>
+            
+            <div class="speech-bubble">
+                <p class="hindi-text">Hey di! Aapke Birthday ke liye ek chota sa surprise 🎁</p>
+                <p class="hindi-text-2">Hope so aapko pasand aayega! 💝</p>
+                <div class="speech-arrow"></div>
+            </div>
+            
+            <div class="gift-box" id="giftBox">
+                <div class="gift-bow">
+                    <div class="bow-left"></div>
+                    <div class="bow-right"></div>
+                    <div class="bow-center"></div>
+                </div>
+                <div class="gift-lid"></div>
+                <div class="gift-base">
+                    <div class="gift-ribbon-v"></div>
+                    <div class="gift-ribbon-h"></div>
+                </div>
+                <div class="gift-shadow"></div>
+                <div class="click-hint">✨ Click Me! ✨</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initial Screen - Book Cover -->
+    <div id="welcome-screen" class="screen">
+        <div class="stars"></div>
+        <div class="book-container">
+            <div class="book" id="mainBook">
+                <div class="book-cover">
+                    <div class="cover-shine"></div>
+                    <h1 class="cover-title">Happy Birthday!</h1>
+                    <p class="cover-subtitle">Click to Open</p>
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Pages Screen -->
+    <div id="book-screen" class="screen">
+        <div class="page-book">
+            <div class="pages-container" id="pagesContainer">
+                <!-- Page 1 -->
+                <div class="page-wrapper active" data-page="1">
+                    <div class="page page-left">
+                        <div class="page-content">
+                            <div class="image-container">
+                                <img src="placeholder1.jpg" alt="Memory 1" class="page-image" id="image1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page page-right">
+                        <div class="page-content">
+                            <h2 class="page-heading">Our Best Memory 🌟</h2>
+                            <p class="page-text">
+                                Every moment with you is a treasure. From the day we met, 
+                                you've brought so much joy and laughter into my life. 
+                                Your smile lights up every room you enter!
+                            </p>
+                            <div class="page-decoration"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 2 -->
+                <div class="page-wrapper" data-page="2">
+                    <div class="page page-left">
+                        <div class="page-content">
+                            <h2 class="page-heading">Adventures Together 🎈</h2>
+                            <p class="page-text">
+                                Remember all those crazy adventures? The late-night talks, 
+                                the spontaneous trips, and all the memories we've created. 
+                                Each one is precious and unforgettable!
+                            </p>
+                            <div class="page-decoration"></div>
+                        </div>
+                    </div>
+                    <div class="page page-right">
+                        <div class="page-content">
+                            <div class="image-container">
+                                <img src="placeholder2.jpg" alt="Memory 2" class="page-image" id="image2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 3 -->
+                <div class="page-wrapper" data-page="3">
+                    <div class="page page-left">
+                        <div class="page-content">
+                            <div class="image-container">
+                                <img src="placeholder3.jpg" alt="Memory 3" class="page-image" id="image3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page page-right">
+                        <div class="page-content">
+                            <h2 class="page-heading">Special Moments 💝</h2>
+                            <p class="page-text">
+                                Your kindness, your strength, and your beautiful heart 
+                                inspire me every day. You're not just a friend, 
+                                you're family. Thank you for being YOU!
+                            </p>
+                            <div class="page-decoration"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 4 -->
+                <div class="page-wrapper" data-page="4">
+                    <div class="page page-left">
+                        <div class="page-content">
+                            <h2 class="page-heading">Celebrating You 🎊</h2>
+                            <p class="page-text">
+                                Today is all about celebrating the amazing person you are! 
+                                Your birthday is a reminder of how blessed we all are 
+                                to have you in our lives. Here's to YOU!
+                            </p>
+                            <div class="page-decoration"></div>
+                        </div>
+                    </div>
+                    <div class="page page-right">
+                        <div class="page-content">
+                            <div class="image-container">
+                                <img src="placeholder4.jpg" alt="Memory 4" class="page-image" id="image4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 5 -->
+                <div class="page-wrapper" data-page="5">
+                    <div class="page page-left">
+                        <div class="page-content">
+                            <div class="image-container">
+                                <img src="placeholder5.jpg" alt="Memory 5" class="page-image" id="image5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page page-right">
+                        <div class="page-content">
+                            <h2 class="page-heading">Here's To Another Year! 🌈</h2>
+                            <p class="page-text">
+                                May this year bring you endless happiness, success, 
+                                and all the dreams you've been wishing for. 
+                                You deserve nothing but the best! Happy Birthday! 🎉
+                            </p>
+                            <div class="page-decoration"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <button class="nav-btn prev-btn" id="prevBtn">← Previous</button>
+                <span class="page-indicator" id="pageIndicator">Page 1 of 5</span>
+                <button class="nav-btn next-btn" id="nextBtn">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cake Screen -->
+    <div id="cake-screen" class="screen">
+        <div class="cake-container">
+            <h2 class="cake-heading">Make a Wish! 🎂</h2>
+            <p class="cake-instruction">Click on the candles to blow them out!</p>
+            
+            <div class="cake">
+                <div class="candles">
+                    <div class="candle" data-candle="1">
+                        <div class="flame">
+                            <div class="flame-inner"></div>
+                        </div>
+                        <div class="wick"></div>
+                        <div class="candle-body"></div>
+                    </div>
+                    <div class="candle" data-candle="2">
+                        <div class="flame">
+                            <div class="flame-inner"></div>
+                        </div>
+                        <div class="wick"></div>
+                        <div class="candle-body"></div>
+                    </div>
+                    <div class="candle" data-candle="3">
+                        <div class="flame">
+                            <div class="flame-inner"></div>
+                        </div>
+                        <div class="wick"></div>
+                        <div class="candle-body"></div>
+                    </div>
+                </div>
+                <div class="cake-layer layer-top">
+                    <div class="frosting-drip drip-1"></div>
+                    <div class="frosting-drip drip-2"></div>
+                    <div class="frosting-drip drip-3"></div>
+                    <div class="frosting-drip drip-4"></div>
+                </div>
+                <div class="cake-layer layer-middle"></div>
+                <div class="cake-layer layer-bottom"></div>
+                <div class="cake-plate"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celebration Screen -->
+    <div id="celebration-screen" class="screen">
+        <canvas id="confettiCanvas"></canvas>
+        <div class="celebration-content">
+            <h1 class="celebration-title">🎉 Happy Birthday! 🎉</h1>
+            <div class="celebration-image-container">
+                <img src="https://i.postimg.cc/3JCYJfW1/Screenshot-2026-02-14-074838.png" alt="Birthday Celebration" class="celebration-image" id="celebrationImage">
+            </div>
+            <p class="celebration-message">
+                Wishing you a day filled with love, laughter, and unforgettable moments!
+            </p>
+            <button class="restart-btn" id="restartBtn">🔄 Experience Again</button>
+        </div>
+        <audio id="birthdaySong" loop>
+            <source src="birthday-song.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
