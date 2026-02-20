@@ -20,13 +20,8 @@ const birthdaySong = document.getElementById('birthdaySong');
 
 // =================== GIFT BOX CLICK ===================
 giftBox.addEventListener('click', () => {
-    // Add opening animation
     giftBox.classList.add('opening');
-    
-    // Create sparkle explosion
     createGiftSparkles();
-    
-    // After animation, switch to book screen
     setTimeout(() => {
         switchScreen(introScreen, welcomeScreen);
     }, 1200);
@@ -355,9 +350,9 @@ restartBtn.addEventListener('click', () => {
 // =================== SCREEN SWITCHING ===================
 function switchScreen(fromScreen, toScreen) {
     fromScreen.classList.remove('active');
-    setTimeout(() => {
-        toScreen.classList.add('active');
-    }, 300);
+    fromScreen.style.display = 'none';
+    toScreen.style.display = 'flex';
+    toScreen.classList.add('active');
 }
 
 // =================== WINDOW RESIZE ===================
