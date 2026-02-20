@@ -21,28 +21,6 @@ body {
     overflow: hidden;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    position: relative;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(255, 215, 0, 0.2) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-    animation: backgroundPulse 10s ease-in-out infinite;
-}
-
-@keyframes backgroundPulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
 }
 
 /* =================== SCREENS =================== */
@@ -74,37 +52,6 @@ body::before {
     overflow: hidden;
 }
 
-#intro-screen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('background.jpg') center/cover;
-    opacity: 0.3;
-    z-index: 0;
-}
-
-#intro-screen::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 30% 40%, rgba(255, 107, 157, 0.4) 0%, transparent 50%),
-        radial-gradient(circle at 70% 60%, rgba(102, 126, 234, 0.4) 0%, transparent 50%);
-    z-index: 1;
-    animation: colorShift 8s ease-in-out infinite;
-}
-
-@keyframes colorShift {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
-}
-
 .intro-stars {
     position: absolute;
     width: 100%;
@@ -117,12 +64,16 @@ body::before {
         radial-gradient(2px 2px at 90px 10px, #fff, transparent);
     background-size: 250px 250px;
     animation: twinkle 2s infinite, starMove 20s linear infinite;
-    z-index: 2;
 }
 
 @keyframes starMove {
     from { background-position: 0 0; }
     to { background-position: 250px 250px; }
+}
+
+@keyframes colorShift {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
 }
 
 .character-container {
@@ -134,7 +85,6 @@ body::before {
     align-items: center;
     gap: 40px;
     padding: 20px;
-    z-index: 10;
 }
 
 .character {
@@ -548,24 +498,6 @@ body::before {
     position: relative;
 }
 
-#welcome-screen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 107, 157, 0.2) 0%, transparent 50%);
-    animation: welcomePulse 6s ease-in-out infinite;
-}
-
-@keyframes welcomePulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
-
 .stars {
     position: absolute;
     width: 100%;
@@ -731,19 +663,6 @@ body::before {
 #book-screen {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
     position: relative;
-}
-
-#book-screen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 10% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 90% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%);
-    pointer-events: none;
 }
 
 .page-book {
@@ -1041,29 +960,9 @@ body::before {
     position: relative;
 }
 
-#cake-screen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 30% 70%, rgba(255, 107, 157, 0.2) 0%, transparent 50%);
-    animation: cakeBgPulse 4s ease-in-out infinite;
-}
-
-@keyframes cakeBgPulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
-
 .cake-container {
     text-align: center;
     animation: zoomIn 1s ease-out;
-    position: relative;
-    z-index: 10;
 }
 
 @keyframes zoomIn {
@@ -1325,25 +1224,6 @@ body::before {
 #celebration-screen {
     background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     position: relative;
-}
-
-#celebration-screen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 70% 60%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
-    animation: celebrationBg 8s ease-in-out infinite;
-}
-
-@keyframes celebrationBg {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
 }
 
 #confettiCanvas {
