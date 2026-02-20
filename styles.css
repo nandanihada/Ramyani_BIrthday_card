@@ -8,6 +8,8 @@
     --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --gold-gradient: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+    --neon-gradient: linear-gradient(135deg, #00f5ff 0%, #ff00ff 50%, #ffaa00 100%);
+    --vibrant-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
     --cake-pink: #ff6b9d;
     --cake-purple: #c44569;
     --candle-color: #ffd700;
@@ -19,6 +21,28 @@ body {
     overflow: hidden;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 215, 0, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: backgroundPulse 10s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
 /* =================== SCREENS =================== */
@@ -45,25 +69,60 @@ body {
 
 /* =================== INTRO SCREEN =================== */
 #intro-screen {
-    background: url('background.jpg') center/cover;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     position: relative;
     overflow: hidden;
 }
 
-/* Removed overlay for clear background image */
+#intro-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('background.jpg') center/cover;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+#intro-screen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 40%, rgba(255, 107, 157, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(102, 126, 234, 0.4) 0%, transparent 50%);
+    z-index: 1;
+    animation: colorShift 8s ease-in-out infinite;
+}
+
+@keyframes colorShift {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
 
 .intro-stars {
     position: absolute;
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-        radial-gradient(2px 2px at 60px 70px, #fff, transparent),
-        radial-gradient(1px 1px at 50px 50px, #ddd, transparent),
-        radial-gradient(1px 1px at 130px 80px, #fff, transparent),
-        radial-gradient(2px 2px at 90px 10px, #eee, transparent);
-    background-size: 200px 200px;
-    animation: twinkle 3s infinite;
+        radial-gradient(3px 3px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 60px 70px, #ffd700, transparent),
+        radial-gradient(2px 2px at 50px 50px, #00f5ff, transparent),
+        radial-gradient(3px 3px at 130px 80px, #ff00ff, transparent),
+        radial-gradient(2px 2px at 90px 10px, #fff, transparent);
+    background-size: 250px 250px;
+    animation: twinkle 2s infinite, starMove 20s linear infinite;
+    z-index: 2;
+}
+
+@keyframes starMove {
+    from { background-position: 0 0; }
+    to { background-position: 250px 250px; }
 }
 
 .character-container {
@@ -75,6 +134,7 @@ body {
     align-items: center;
     gap: 40px;
     padding: 20px;
+    z-index: 10;
 }
 
 .character {
@@ -210,13 +270,18 @@ body {
 
 .speech-bubble {
     position: relative;
-    background: white;
-    padding: 25px 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    max-width:90%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+    backdrop-filter: blur(10px);
+    padding: 30px 35px;
+    border-radius: 25px;
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    max-width: 90%;
     text-align: center;
     animation: fadeInBubble 1s ease-out 0.8s backwards;
+    border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 @keyframes fadeInBubble {
@@ -234,17 +299,24 @@ body {
 }
 
 .hindi-text {
-    font-size: 1.4rem;
-    color: #667eea;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    margin-bottom: 12px;
     line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
 }
 
 .hindi-text-2 {
-    font-size: 1.2rem;
-    color: #ff6b9d;
-    font-weight: 500;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, #ff6b9d 0%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
 }
 
 .speech-arrow {
@@ -295,8 +367,16 @@ body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    animation: giftBounce 1s ease-in-out infinite 2.5s;
+    box-shadow: 
+        0 10px 40px rgba(255, 107, 157, 0.6),
+        0 0 20px rgba(255, 107, 157, 0.4),
+        inset 0 -5px 15px rgba(0, 0, 0, 0.3);
+    animation: giftBounce 1s ease-in-out infinite 2.5s, giftGlow 2s ease-in-out infinite;
+}
+
+@keyframes giftGlow {
+    0%, 100% { box-shadow: 0 10px 40px rgba(255, 107, 157, 0.6), 0 0 20px rgba(255, 107, 157, 0.4); }
+    50% { box-shadow: 0 10px 50px rgba(255, 107, 157, 0.8), 0 0 30px rgba(255, 107, 157, 0.6); }
 }
 
 @keyframes giftBounce {
@@ -463,8 +543,27 @@ body {
 
 /* =================== WELCOME SCREEN - BOOK COVER =================== */
 #welcome-screen {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     perspective: 2000px;
+    position: relative;
+}
+
+#welcome-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 107, 157, 0.2) 0%, transparent 50%);
+    animation: welcomePulse 6s ease-in-out infinite;
+}
+
+@keyframes welcomePulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
 .stars {
@@ -512,18 +611,29 @@ body {
 .book-cover {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
-    border-radius: 15px;
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 50%, #30cfd0 100%);
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        inset 0 0 40px rgba(255, 255, 255, 0.1);
+        0 25px 80px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(255, 215, 0, 0.4),
+        inset 0 0 60px rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 4px solid rgba(255, 255, 255, 0.4);
+    animation: bookGlow 3s ease-in-out infinite;
+}
+
+@keyframes bookGlow {
+    0%, 100% { 
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.4);
+    }
+    50% { 
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 107, 157, 0.6);
+    }
 }
 
 .cover-shine {
@@ -543,14 +653,28 @@ body {
 
 .cover-title {
     font-family: 'Dancing Script', cursive;
-    font-size: 4rem;
+    font-size: 5rem;
     color: #fff;
     text-shadow: 
-        0 0 20px rgba(255, 255, 255, 0.8),
-        0 5px 10px rgba(0, 0, 0, 0.5);
+        0 0 30px rgba(255, 255, 255, 1),
+        0 0 60px rgba(255, 215, 0, 0.8),
+        0 5px 20px rgba(0, 0, 0, 0.7),
+        0 10px 40px rgba(255, 107, 157, 0.6);
     margin-bottom: 20px;
     z-index: 2;
-    animation: glow 2s ease-in-out infinite;
+    animation: titleGlow 2s ease-in-out infinite;
+    letter-spacing: 3px;
+}
+
+@keyframes titleGlow {
+    0%, 100% { 
+        text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 215, 0, 0.8), 0 5px 20px rgba(0, 0, 0, 0.7);
+        transform: scale(1);
+    }
+    50% { 
+        text-shadow: 0 0 40px rgba(255, 255, 255, 1), 0 0 80px rgba(255, 107, 157, 1), 0 5px 30px rgba(0, 0, 0, 0.9);
+        transform: scale(1.05);
+    }
 }
 
 @keyframes glow {
@@ -559,10 +683,25 @@ body {
 }
 
 .cover-subtitle {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.95);
     z-index: 2;
-    animation: pulse 2s ease-in-out infinite;
+    animation: subtitlePulse 2.5s ease-in-out infinite;
+    font-weight: 500;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes subtitlePulse {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 0.85;
+        text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    }
+    50% { 
+        transform: scale(1.08); 
+        opacity: 1;
+        text-shadow: 0 4px 25px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.5);
+    }
 }
 
 @keyframes pulse {
@@ -590,7 +729,21 @@ body {
 
 /* =================== BOOK PAGES SCREEN =================== */
 #book-screen {
-    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+    position: relative;
+}
+
+#book-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .page-book {
@@ -638,13 +791,19 @@ body {
 }
 
 .page {
-    background: linear-gradient(135deg, #fff9f0 0%, #fff5e6 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     padding: 60px;
     box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.3),
-        inset 0 0 20px rgba(139, 69, 19, 0.05);
+        0 15px 50px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.page:hover {
+    transform: translateY(-5px);
 }
 
 .page-left {
@@ -690,11 +849,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(102, 126, 234, 0.3);
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     position: relative;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .page-image {
@@ -710,11 +884,29 @@ body {
 
 .page-heading {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    color: #c44569;
+    font-size: 3rem;
+    background: linear-gradient(135deg, #ff6b9d 0%, #667eea 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 30px;
     text-align: center;
     animation: slideDown 0.8s ease-out;
+    font-weight: 700;
+    text-shadow: 0 2px 20px rgba(255, 107, 157, 0.3);
+    position: relative;
+}
+
+.page-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+    border-radius: 2px;
 }
 
 @keyframes slideDown {
@@ -729,11 +921,13 @@ body {
 }
 
 .page-text {
-    font-size: 1.2rem;
-    line-height: 2;
-    color: #333;
+    font-size: 1.25rem;
+    line-height: 2.2;
+    color: #2c3e50;
     text-align: justify;
     animation: fadeInUp 1s ease-out 0.3s backwards;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes fadeInUp {
@@ -781,43 +975,95 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
-    padding: 15px 40px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    padding: 18px 45px;
+    font-size: 1.15rem;
+    font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 8px 25px rgba(102, 126, 234, 0.5),
+        0 0 0 0 rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.nav-btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .nav-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 15px 40px rgba(102, 126, 234, 0.7),
+        0 0 30px rgba(102, 126, 234, 0.5);
 }
 
 .nav-btn:active {
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.02);
 }
 
 .nav-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+    transform: none;
 }
 
 .page-indicator {
     color: white;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    padding: 12px 30px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 /* =================== CAKE SCREEN =================== */
 #cake-screen {
-    background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    position: relative;
+}
+
+#cake-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 30% 70%, rgba(255, 107, 157, 0.2) 0%, transparent 50%);
+    animation: cakeBgPulse 4s ease-in-out infinite;
+}
+
+@keyframes cakeBgPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
 .cake-container {
     text-align: center;
     animation: zoomIn 1s ease-out;
+    position: relative;
+    z-index: 10;
 }
 
 @keyframes zoomIn {
@@ -833,11 +1079,27 @@ body {
 
 .cake-heading {
     font-family: 'Dancing Script', cursive;
-    font-size: 4rem;
+    font-size: 4.5rem;
     color: #fff;
-    margin-bottom: 20px;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-    animation: bounce 2s ease-in-out infinite;
+    margin-bottom: 25px;
+    text-shadow: 
+        0 0 40px rgba(255, 255, 255, 1),
+        0 0 80px rgba(255, 215, 0, 0.8),
+        0 5px 30px rgba(0, 0, 0, 0.7);
+    animation: cakeTitleBounce 2s ease-in-out infinite;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+@keyframes cakeTitleBounce {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+        text-shadow: 0 0 40px #fff, 0 0 80px #ffd700;
+    }
+    50% { 
+        transform: translateY(-15px) scale(1.05);
+        text-shadow: 0 0 50px #fff, 0 0 100px #ff6b9d;
+    }
 }
 
 @keyframes bounce {
@@ -846,9 +1108,17 @@ body {
 }
 
 .cake-instruction {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 60px;
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 70px;
+    font-weight: 500;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    animation: instructionPulse 2s ease-in-out infinite;
+}
+
+@keyframes instructionPulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
 }
 
 .cake {
@@ -856,6 +1126,7 @@ body {
     width: 400px;
     margin: 0 auto;
     animation: cakeEnter 1s ease-out;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
 }
 
 @keyframes cakeEnter {
@@ -966,10 +1237,21 @@ body {
     height: 80px;
     background: linear-gradient(135deg, #ff6b9d 0%, #f06292 100%);
     box-shadow: 
-        0 5px 20px rgba(255, 107, 157, 0.5),
-        inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+        0 8px 25px rgba(255, 107, 157, 0.6),
+        0 0 30px rgba(255, 107, 157, 0.4),
+        inset 0 -5px 15px rgba(0, 0, 0, 0.2);
     overflow: visible;
     z-index: 3;
+    animation: layerGlow 3s ease-in-out infinite;
+}
+
+@keyframes layerGlow {
+    0%, 100% { 
+        box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6), 0 0 30px rgba(255, 107, 157, 0.4);
+    }
+    50% { 
+        box-shadow: 0 8px 35px rgba(255, 107, 157, 0.8), 0 0 40px rgba(255, 107, 157, 0.6);
+    }
 }
 
 .frosting-drip {
@@ -1009,9 +1291,11 @@ body {
     background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
     margin-top: -5px;
     box-shadow: 
-        0 5px 20px rgba(142, 68, 173, 0.5),
-        inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+        0 8px 25px rgba(142, 68, 173, 0.6),
+        0 0 30px rgba(142, 68, 173, 0.4),
+        inset 0 -5px 15px rgba(0, 0, 0, 0.2);
     z-index: 2;
+    animation: layerGlow 3s ease-in-out infinite 0.5s;
 }
 
 .layer-bottom {
@@ -1019,9 +1303,11 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     margin-top: -5px;
     box-shadow: 
-        0 10px 30px rgba(102, 126, 234, 0.6),
-        inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+        0 12px 35px rgba(102, 126, 234, 0.7),
+        0 0 40px rgba(102, 126, 234, 0.5),
+        inset 0 -5px 15px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    animation: layerGlow 3s ease-in-out infinite 1s;
 }
 
 .cake-plate {
@@ -1037,7 +1323,27 @@ body {
 
 /* =================== CELEBRATION SCREEN =================== */
 #celebration-screen {
-    background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    position: relative;
+}
+
+#celebration-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+    animation: celebrationBg 8s ease-in-out infinite;
+}
+
+@keyframes celebrationBg {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
 }
 
 #confettiCanvas {
@@ -1069,14 +1375,36 @@ body {
 
 .celebration-title {
     font-family: 'Dancing Script', cursive;
-    font-size: 5rem;
+    font-size: 5.5rem;
     color: #fff;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     text-shadow: 
-        0 0 20px rgba(255, 255, 255, 0.8),
-        0 0 40px rgba(255, 107, 157, 0.6),
-        0 5px 20px rgba(0, 0, 0, 0.5);
-    animation: rainbowText 3s ease-in-out infinite;
+        0 0 30px rgba(255, 255, 255, 1),
+        0 0 60px rgba(255, 107, 157, 0.8),
+        0 0 90px rgba(102, 126, 234, 0.6),
+        0 5px 30px rgba(0, 0, 0, 0.7);
+    animation: celebrationRainbow 4s ease-in-out infinite;
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+@keyframes celebrationRainbow {
+    0%, 100% { 
+        text-shadow: 0 0 30px #fff, 0 0 60px #ff6b9d, 0 0 90px #667eea;
+        transform: scale(1) rotate(0deg);
+    }
+    25% { 
+        text-shadow: 0 0 30px #ffd700, 0 0 60px #ff6b35, 0 0 90px #ffd700;
+        transform: scale(1.05) rotate(2deg);
+    }
+    50% { 
+        text-shadow: 0 0 30px #00f5ff, 0 0 60px #667eea, 0 0 90px #764ba2;
+        transform: scale(1.1) rotate(-2deg);
+    }
+    75% { 
+        text-shadow: 0 0 30px #ff00ff, 0 0 60px #f093fb, 0 0 90px #ff6b9d;
+        transform: scale(1.05) rotate(2deg);
+    }
 }
 
 @keyframes rainbowText {
@@ -1087,17 +1415,31 @@ body {
 }
 
 .celebration-image-container {
-    width: 400px;
-    height: 400px;
-    margin: 0 auto 40px;
+    width: 450px;
+    height: 450px;
+    margin: 0 auto 50px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 
-        0 0 0 10px rgba(255, 255, 255, 0.2),
-        0 0 0 20px rgba(255, 255, 255, 0.1),
-        0 20px 60px rgba(0, 0, 0, 0.5);
+        0 0 0 15px rgba(255, 255, 255, 0.2),
+        0 0 0 30px rgba(255, 255, 255, 0.1),
+        0 0 60px rgba(255, 107, 157, 0.6),
+        0 0 100px rgba(102, 126, 234, 0.4),
+        0 30px 80px rgba(0, 0, 0, 0.6);
     position: relative;
-    animation: rotateFrame 10s linear infinite;
+    animation: imageFloat 6s ease-in-out infinite;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes imageFloat {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.2), 0 0 60px rgba(255, 107, 157, 0.6);
+    }
+    50% { 
+        transform: translateY(-20px) scale(1.05);
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.3), 0 0 80px rgba(102, 126, 234, 0.8);
+    }
 }
 
 @keyframes rotateFrame {
@@ -1113,148 +1455,317 @@ body {
 }
 
 .celebration-message {
-    font-size: 1.8rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 40px;
-    line-height: 1.8;
-    max-width: 600px;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 50px;
+    line-height: 2;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    font-weight: 400;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    animation: messageFade 3s ease-in-out infinite;
+}
+
+@keyframes messageFade {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 1; }
 }
 
 .restart-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: #333;
     border: none;
-    padding: 20px 50px;
-    font-size: 1.3rem;
-    font-weight: 600;
+    padding: 22px 55px;
+    font-size: 1.4rem;
+    font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 15px 40px rgba(250, 112, 154, 0.5),
+        0 0 30px rgba(254, 225, 64, 0.4);
+    position: relative;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.restart-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.restart-btn:hover::before {
+    width: 400px;
+    height: 400px;
 }
 
 .restart-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 
+        0 20px 60px rgba(250, 112, 154, 0.7),
+        0 0 50px rgba(254, 225, 64, 0.6);
 }
 
 .restart-btn:active {
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-4px) scale(1.05);
 }
 
 /* =================== RESPONSIVE =================== */
 @media (max-width: 768px) {
     .book {
-        width: 300px;
-        height: 400px;
+        width: 320px;
+        height: 420px;
     }
     
+    .cover-title {
+        font-size: 3rem;
+        letter-spacing: 2px;
+    }
+    
+    .cover-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .page-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .page {
+        padding: 40px 25px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .page-left,
+    .page-right {
+        border-radius: 20px;
+        border: none;
+    }
+    
+    .page-heading {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .page-text {
+        font-size: 1.1rem;
+        line-height: 1.9;
+    }
+    
+    .nav-buttons {
+        padding: 0 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .nav-btn {
+        padding: 14px 30px;
+        font-size: 1rem;
+    }
+    
+    .page-indicator {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        order: -1;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .cake {
+        width: 280px;
+        transform: scale(0.9);
+    }
+    
+    .cake-heading {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+    
+    .cake-instruction {
+        font-size: 1.3rem;
+        margin-bottom: 50px;
+        padding: 0 20px;
+    }
+    
+    .celebration-title {
+        font-size: 3.5rem;
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+    }
+    
+    .celebration-image-container {
+        width: 280px;
+        height: 280px;
+        margin-bottom: 30px;
+    }
+    
+    .celebration-message {
+        font-size: 1.4rem;
+        padding: 0 20px;
+        line-height: 1.8;
+        margin-bottom: 35px;
+    }
+    
+    .restart-btn {
+        padding: 18px 40px;
+        font-size: 1.2rem;
+    }
+    
+    /* Intro Screen Mobile */
+    .character-head {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .eye {
+        width: 11px;
+        height: 11px;
+        top: 26px;
+    }
+    
+    .eye-left {
+        left: 17px;
+    }
+    
+    .eye-right {
+        right: 17px;
+    }
+    
+    .smile {
+        width: 28px;
+        height: 14px;
+        bottom: 17px;
+    }
+    
+    .character-torso {
+        width: 90px;
+        height: 110px;
+    }
+    
+    .character-arm {
+        width: 28px;
+        height: 75px;
+        top: 80px;
+    }
+    
+    .speech-bubble {
+        padding: 25px 20px;
+        max-width: 95%;
+        border-radius: 20px;
+    }
+    
+    .hindi-text {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .hindi-text-2 {
+        font-size: 1.15rem;
+    }
+    
+    .gift-box {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .gift-base {
+        width: 110px;
+        height: 90px;
+    }
+    
+    .gift-lid {
+        width: 120px;
+        height: 28px;
+    }
+    
+    .click-hint {
+        font-size: 1.1rem;
+        bottom: -38px;
+    }
+    
+    .image-container {
+        border-radius: 15px;
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
     .cover-title {
         font-size: 2.5rem;
     }
     
     .cover-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
-    .page-wrapper {
-        grid-template-columns: 1fr;
+    .book {
+        width: 280px;
+        height: 380px;
     }
     
     .page {
-        padding: 30px;
-    }
-    
-    .page-left,
-    .page-right {
-        border-radius: 15px;
-        border: none;
+        padding: 30px 20px;
     }
     
     .page-heading {
-        font-size: 2rem;
+        font-size: 1.9rem;
     }
     
     .page-text {
         font-size: 1rem;
-    }
-    
-    .nav-buttons {
-        padding: 0 20px;
+        line-height: 1.8;
     }
     
     .nav-btn {
         padding: 12px 25px;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
     
-    .cake {
-        width: 300px;
+    .page-indicator {
+        font-size: 1rem;
+        padding: 8px 18px;
     }
     
     .cake-heading {
         font-size: 2.5rem;
     }
     
+    .cake-instruction {
+        font-size: 1.15rem;
+    }
+    
     .celebration-title {
-        font-size: 3rem;
+        font-size: 2.8rem;
+        letter-spacing: 1px;
     }
     
     .celebration-image-container {
-        width: 300px;
-        height: 300px;
+        width: 240px;
+        height: 240px;
     }
     
     .celebration-message {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        line-height: 1.7;
     }
     
-    /* Intro Screen Mobile */
-    .character-head {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .eye {
-        width: 10px;
-        height: 10px;
-        top: 22px;
-    }
-    
-    .eye-left {
-        left: 15px;
-    }
-    
-    .eye-right {
-        right: 15px;
-    }
-    
-    .smile {
-        width: 25px;
-        height: 12px;
-        bottom: 15px;
-    }
-    
-    .character-torso {
-        width: 80px;
-        height: 100px;
-    }
-    
-    .character-arm {
-        width: 25px;
-        height: 70px;
-        top: 75px;
-    }
-    
-    .speech-bubble {
-        padding: 20px;
-        max-width: 95%;
+    .restart-btn {
+        padding: 16px 35px;
+        font-size: 1.1rem;
     }
     
     .hindi-text {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
     }
     
     .hindi-text-2 {
@@ -1262,22 +1773,77 @@ body {
     }
     
     .gift-box {
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
     }
     
     .gift-base {
-        width: 100px;
-        height: 80px;
+        width: 95px;
+        height: 75px;
     }
     
     .gift-lid {
-        width: 110px;
-        height: 25px;
+        width: 105px;
+        height: 24px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .page {
+        padding: 30px 20px;
     }
     
-    .click-hint {
-        font-size: 1rem;
-        bottom: -35px;
+    .page-heading {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .page-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .image-container {
+        min-height: 200px;
+    }
+    
+    .cake {
+        transform: scale(0.75);
+    }
+    
+    .celebration-image-container {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .celebration-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .celebration-message {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+    }
+}
+
+/* Tablet Landscape */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .page {
+        padding: 50px 40px;
+    }
+    
+    .page-heading {
+        font-size: 2.3rem;
+    }
+    
+    .page-text {
+        font-size: 1.15rem;
+    }
+    
+    .celebration-image-container {
+        width: 380px;
+        height: 380px;
     }
 }
